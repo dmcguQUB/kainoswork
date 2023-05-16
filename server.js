@@ -86,6 +86,18 @@ app.get('/editEmployee/:id', (req, res) => {
       res.redirect('/viewemployee');
     });
   });
+
+
+
+      app.get('/deleteEmployee/:id', (req, res) => {
+        const id = req.params.id;
+      
+        connection.query('DELETE FROM user WHERE user_id = ?', [id], (error, results, fields) => {
+          if (error) throw error;
+          res.redirect('/viewemployee');
+        });
+      });
+      
   
 // Start the server
 app.listen(port, () => {
