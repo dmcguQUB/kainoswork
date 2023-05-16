@@ -64,9 +64,10 @@ app.get('/viewemployee', (req, res) => {
 app.get('/editEmployee/:id', (req, res) => {
     const id = req.params.id;
   
-    connection.query('SELECT * FROM user WHERE employeeNumber = ?', [id], (error, results, fields) => {
+    connection.query('SELECT * FROM user WHERE user_id = ?', [id], (error, results, fields) => {
+        console.log(results);
       if (error) throw error;
-      res.render('editEmployee', { employee: results[0] });
+      res.render('updateemployee', { employee: results[0] });
     });
   });
   
@@ -75,13 +76,12 @@ app.get('/editEmployee/:id', (req, res) => {
     const id = req.params.id;
     const { name, address, salary, role } = req.body;
   
-    connection.query('UPDATE user SET name = ?, address = ?, salary = ?, role = ? WHERE employeeNumber = ?', [name, address, salary, role, id], (error, results, fields) => {
+    connection.query('UPDATE user SET name = ?, address = ?, salary = ?, role = ? WHERE user_id = ?', [name, address, salary, role, id], (error, results, fields) => {
       if (error) throw error;
       res.redirect('/viewemployee');
     });
   });
   
-
 
 // Start the server
 app.listen(port, () => {
