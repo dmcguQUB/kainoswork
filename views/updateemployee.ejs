@@ -14,11 +14,61 @@
     <title>Employee List</title>
   </head>
   <body>
+
+
+<!--NavBAR-->
+<!--changing colour of the logo and adjusted the size of works-->
+<nav class="navbar navbar-expand-lg py-3 sticky-top navbar-light bg-white">
+  <!--Container start for the Navbar-->
+  <div class="container">
+    <!--creates a link to the home page of the website and sets the brand name, which includes an icon of a record vinyl.-->
+    <a class="navbar-brand" href="/">Kainos</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Menu
+          </a>
+          <ul class="dropdown-menu">
+            <!--need to change this to match which songs they have liked-->
+            <li><a class="dropdown-item" href="/viewemployee">View Employees</a></li>
+              <li><a class="dropdown-item" href="/">Create employees</a></li>
+              <li><a class="dropdown-item" href="/updateemployee">Edit employee</a></li>
+            <li><hr class="dropdown-divider" /></li>
+           
+
+          </ul>
+        </li>
+
+      
+    </div>
+  </div>
+    <!--Container end for the Navbar-->
+
+</nav>
+<!--end of NavBAR-->
     <div class="container">
       <h1 class="mt-4 mb-4">Edit Employee</h1>
       
       <!-- Form for updating the employee details -->
-      <form action="/updateEmployee/<%= employee.employeeNumber %>" method="POST">
+      <form action="/updateEmployee/<%= employee.user_id %>" method="POST">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" value="<%= employee.name %>" class="form-control">
