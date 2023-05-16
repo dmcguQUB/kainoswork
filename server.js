@@ -48,10 +48,18 @@ app.get('/', (req, res) => {
     res.render('createemployee');
 });
 
-// Define a route handler for GET requests to the home page
+// Define a route handler for GET requests to the /viewemployee page
 app.get('/viewemployee', (req, res) => {
-    res.render('viewemployee');
+    // Query the database
+    connection.query('SELECT * FROM user', (error, results, fields) => {
+        console.log(results);
+        if (error) throw error;
+        
+        // Render the EJS template with the data from the database
+        res.render('viewemployee', { employees: results });
+    });
 });
+
 
 // Start the server
 app.listen(port, () => {

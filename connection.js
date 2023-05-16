@@ -1,3 +1,5 @@
+
+//connection.js file
 //Import the mysql module to allow server to interact with SQL database
 let mysql  = require('mysql');
 
@@ -6,7 +8,7 @@ let db = mysql.createConnection({
     host: 'localhost', // The database server's address
     user: 'root',      // The database user's username
     password: 'root',  // The database user's password
-    database: '40382237', // The name of the database to connect to
+    database: 'kainos', // The name of the database to connect to
     port: '8889'        // The port number the database server is listening on
 });
 
