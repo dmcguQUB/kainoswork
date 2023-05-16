@@ -53,6 +53,11 @@ app.get('/viewemployee', (req, res) => {
     res.render('viewemployee');
 });
 
+// Define a route handler for GET requests to the home page
+app.get('/viewemployeeadmin', (req, res) => {
+  res.render('viewemployeeadmin');
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
