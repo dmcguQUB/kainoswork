@@ -60,6 +60,11 @@ app.get('/viewemployee', (req, res) => {
     });
 });
 
+// Define a route handler for GET requests to the home page
+app.get('/viewemployeeadmin', (req, res) => {
+  res.render('viewemployeeadmin');
+});
+
 // Route for displaying the edit page
 app.get('/editEmployee/:id', (req, res) => {
     const id = req.params.id;
@@ -82,7 +87,6 @@ app.get('/editEmployee/:id', (req, res) => {
     });
   });
   
-
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
