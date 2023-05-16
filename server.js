@@ -60,6 +60,28 @@ app.get('/viewemployee', (req, res) => {
     });
 });
 
+// Route for displaying the edit page
+app.get('/editEmployee/:id', (req, res) => {
+    const id = req.params.id;
+  
+    connection.query('SELECT * FROM user WHERE employeeNumber = ?', [id], (error, results, fields) => {
+      if (error) throw error;
+      res.render('editEmployee', { employee: results[0] });
+    });
+  });
+  
+  // Route for handling the form submission
+  app.post('/updateEmployee/:id', (req, res) => {
+    const id = req.params.id;
+    const { name, address, salary, role } = req.body;
+  
+    connection.query('UPDATE user SET name = ?, address = ?, salary = ?, role = ? WHERE employeeNumber = ?', [name, address, salary, role, id], (error, results, fields) => {
+      if (error) throw error;
+      res.redirect('/viewemployee');
+    });
+  });
+  
+
 
 // Start the server
 app.listen(port, () => {
