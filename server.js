@@ -48,9 +48,16 @@ app.get('/', (req, res) => {
     res.render('createemployee');
 });
 
-// Define a route handler for GET requests to the home page
+// Define a route handler for GET requests to the /viewemployee page
 app.get('/viewemployee', (req, res) => {
-    res.render('viewemployee');
+    // Query the database
+    connection.query('SELECT * FROM user', (error, results, fields) => {
+        console.log(results);
+        if (error) throw error;
+        
+        // Render the EJS template with the data from the database
+        res.render('viewemployee', { employees: results });
+    });
 });
 
 // Define a route handler for GET requests to the home page
@@ -58,6 +65,28 @@ app.get('/viewemployeeadmin', (req, res) => {
   res.render('viewemployeeadmin');
 });
 
+// Route for displaying the edit page
+app.get('/editEmployee/:id', (req, res) => {
+    const id = req.params.id;
+  
+    connection.query('SELECT * FROM user WHERE user_id = ?', [id], (error, results, fields) => {
+        console.log(results);
+      if (error) throw error;
+      res.render('updateemployee', { employee: results[0] });
+    });
+  });
+  
+  // Route for handling the form submission
+  app.post('/updateEmployee/:id', (req, res) => {
+    const id = req.params.id;
+    const { name, address, salary, role } = req.body;
+  
+    connection.query('UPDATE user SET name = ?, address = ?, salary = ?, role = ? WHERE user_id = ?', [name, address, salary, role, id], (error, results, fields) => {
+      if (error) throw error;
+      res.redirect('/viewemployee');
+    });
+  });
+  
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

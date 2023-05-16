@@ -1,3 +1,5 @@
+
+//connection.js file
 //Import the mysql module to allow server to interact with SQL database
 let mysql  = require('mysql');
 
